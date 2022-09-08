@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -17,6 +18,19 @@ const Home = () => {
     }
   };
 
+  const onDeleteUser = async (id) => {
+    if (
+      window.confirm("Are you sure that you wanted to delete that user record")
+    ) {
+      const response = await axios.delete(
+        `http://localhost:8005/apis/task/${id}`
+      );
+      if (response.status === 200) {
+        toast.success(response.data);
+        getTasks();
+      }
+    }
+  };
   console.log("data=>", data);
 
   return (
@@ -46,17 +60,16 @@ const Home = () => {
                   <td>{item.currentstate}</td>
                   <td>
                     <th scope="row">{index + 1}</th>
-                    {/* <td>Nipuni</td>
-                <td>Nipuni dilukshika</td>
-                <td>2022-09-16</td>
-                <td>Nimesha</td>
-                <td>Teacher</td>
-                <td> */}
                     <Link to={`/update/${item.id}`}>
                       <button className="btn btn-edit">Edit</button>
                     </Link>
                     <Link to={`/delete/${item.id}`}>
-                      <button className="btn btn-delete" onClick={()=> onDeleteUser(item.id)}>Delete</button>
+                      <button
+                        className="btn btn-delete"
+                        onClick={() => onDeleteUser(item.id)}
+                      >
+                        Delete
+                      </button>
                     </Link>
                     <Link to={`/view/${item.id}`}>
                       <button className="btn btn-view">View</button>

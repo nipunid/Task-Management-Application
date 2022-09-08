@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./AddEdit.css";
 import { toast } from "react-toastify";
@@ -55,7 +55,7 @@ const AddEdit = () => {
         <label htmlFor="name">Title</label>
         <input
           type="text"
-          id="name"
+          id="title"
           name="title"
           placeholder="Enter Title..."
           onChange={handleInputChange}
@@ -65,7 +65,7 @@ const AddEdit = () => {
         <label htmlFor="name">Description</label>
         <input
           type="text"
-          id="name"
+          id="description"
           name="description"
           placeholder="Enter Description..."
           onChange={handleInputChange}
@@ -75,7 +75,7 @@ const AddEdit = () => {
         <label htmlFor="name">DueDate</label>
         <input
           type="text"
-          id="date"
+          id="duedate"
           name="duedate"
           placeholder="Enter the Edit Date..."
           onChange={handleInputChange}
@@ -85,7 +85,7 @@ const AddEdit = () => {
         <label htmlFor="name">Asignee</label>
         <input
           type="text"
-          id="name"
+          id="asignee"
           name="asignee"
           placeholder="Enter new asignee..."
           onChange={handleInputChange}
@@ -94,7 +94,7 @@ const AddEdit = () => {
         <label htmlFor="name">CurrentState</label>
         <input
           type="text"
-          id="name"
+          id="currentstate"
           name="currentstate"
           placeholder="Enter new currentstate..."
           onChange={handleInputChange}
